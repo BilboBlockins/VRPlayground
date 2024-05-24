@@ -63,12 +63,24 @@
         var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
         var createScene = async function () {
     // This creates a basic Babylon Scene object (non-mesh)
-    var scene = new BABYLON.Scene(engine);
+    // var scene = new BABYLON.Scene(engine);
 
-    // This creates and positions a free camera (non-mesh)
-    var camera = new BABYLON.ArcRotateCamera("camera1", -1,1,10,new BABYLON.Vector3(0, 0, 0), scene);
+    // // This creates and positions a free camera (non-mesh)
+    // var camera = new BABYLON.ArcRotateCamera("camera1", -1,1,10,new BABYLON.Vector3(0, 0, 0), scene);
 
-    // This attaches the camera to the canvas
+    // // This attaches the camera to the canvas
+    // camera.attachControl(canvas, true);
+
+    // Creates a basic Babylon Scene object (non-mesh)
+    const scene = new BABYLON.Scene(engine);
+
+    // Creates and positions a free camera (non-mesh)
+    const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 1, -5), scene);
+
+    // Cargets the camera to scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
+
+    // Attaches the camera to the canvas
     camera.attachControl(canvas, true);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
@@ -93,10 +105,21 @@
         gs.position.y = 1.7;
     });
 
+    // const xr = await scene.createDefaultXRExperienceAsync({
+    //     uiOptions: {
+    //         sessionMode: 'immersive-ar'
+    //     }
+    // });
+
     const xr = await scene.createDefaultXRExperienceAsync({
         uiOptions: {
-            sessionMode: 'immersive-ar'
-        }
+            sessionMode: "immersive-ar",
+            referenceSpaceType: "local-floor",
+            onError: (error) => {
+                alert(error);
+            }
+        },
+        optionalFeatures: true
     });
 
     return scene;
