@@ -84,25 +84,28 @@
     camera.attachControl(canvas, true);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    //var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     // Default intensity is 1. Let's dim the light a small amount
-    light.intensity = 0.7;
+    //light.intensity = 0.7;
 
     // Our built-in 'sphere' shape.
-    var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 1, segments: 32}, scene);
+    //var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 1, segments: 32}, scene);
 
     // Move the sphere upward 1/2 its height
-    sphere.position.y = 0.5;
-    sphere.position.z = -1;
+    //sphere.position.y = 0.5;
+    //sphere.position.z = -1;
 
     // Our built-in 'ground' shape.
-    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
+    //var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
 
     // Gaussian Splatting
     var gs = new BABYLON.GaussianSplattingMesh("Halo", null, scene);
     gs.loadFileAsync("https://raw.githubusercontent.com/CedricGuillemet/dump/master/Halo_Believe.splat").then(()=>{
-        gs.position.y = 1.7;
+        //gs.position.y = 1.7;
+        gs.scaling.y = .25;
+        gs.scaling.x = .25;
+        gs.scaling.z = .25;
     });
 
     // const xr = await scene.createDefaultXRExperienceAsync({
