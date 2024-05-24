@@ -102,10 +102,11 @@
     // Gaussian Splatting
     var gs = new BABYLON.GaussianSplattingMesh("Halo", null, scene);
     gs.loadFileAsync("https://raw.githubusercontent.com/CedricGuillemet/dump/master/Halo_Believe.splat").then(()=>{
-        //gs.position.y = 1.7;
-        gs.scaling.y = .25;
-        gs.scaling.x = .25;
-        gs.scaling.z = .25;
+        gs.position.y = 1.5;
+        gs.position.x = 1.0;
+        gs.scaling.y = .4;
+        gs.scaling.x = .4;
+        gs.scaling.z = .4;
     });
 
     // const xr = await scene.createDefaultXRExperienceAsync({
